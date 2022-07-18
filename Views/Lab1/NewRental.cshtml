@@ -1,0 +1,14 @@
+﻿@using Lab1.Models.ViewModel
+@model EquipmentSelectViewModel 
+
+<h1>Create new rental: </h1>
+<br />
+<form asp-controller="Lab1" asp-action="CreateNewRental" method="post">
+    <label for="customer">Customers Name: </label>
+    <input type="text" id="customer" name="customer"/><br /><br />
+    <label for="equipment">Equipment: </label>
+    <select asp-items=@Model.EquipmentSelectItems name="EquipmentId" id="equipment"></select><br /><br />
+    <label for="hours">Rental Hours:</label>
+    <input type="number" id="hours" name="hours"/><br /><br />
+    <button type="submit">Rental</button>
+</form>

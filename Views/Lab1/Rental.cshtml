@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Lab1.Models.Rental>
+
+@{
+    ViewData["Title"] = "Rental";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Rental History</h1>
+<h2>Is current:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCurrent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    @if (item.IsCurrent)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCurrent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipment.EquipmentName)
+            </td> 
+            <td>
+                <form asp-controller="Lab1" asp-action="End" method="post">
+                    <input hidden type="text" name="id" value="@item.Id"/>
+                    <button type="submit">End</button>
+                </form>
+            </td>                            
+        </tr>
+    }  
+}
+    </tbody>
+</table>
+
+<br/>
+                        
+<h2>Is not current:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCurrent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    @if (!item.IsCurrent)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCurrent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipment.EquipmentName)
+            </td>              
+            <td>
+@*                <form asp-controller="Lab1" asp-action="End" method="post">
+                    <input hidden type="text" name="id" value="@item.Id"/>
+                    <button type="submit">End</button>
+                </form>*@
+            </td>
+        </tr>
+    } 
+}
+    </tbody>
+</table>
