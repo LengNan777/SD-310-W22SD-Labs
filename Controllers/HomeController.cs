@@ -1,7 +1,7 @@
 ﻿using Lab1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+ 
 namespace Lab1.Controllers
 {
     public class HomeController : Controller
